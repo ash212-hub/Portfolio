@@ -73,7 +73,7 @@ const Contact = ({contact}) => {
       
      
       toast.success("message is sent successfull",{
-        position:"bottom-right"
+        position:"top-right"
       })
      
 
