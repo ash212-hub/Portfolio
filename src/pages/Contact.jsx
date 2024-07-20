@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser';
 import plain from "../props/paper-plane.png"
 import doimg from "../props/contactdpp.jpg"
 import { motion} from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  
 
 const Contact = ({contact}) => {
@@ -10,10 +12,7 @@ const Contact = ({contact}) => {
   const[email,setEmail]=useState("");
   const[message,setMessage]=useState("");
   const[fly,setFly]=useState(false)
-  
-  // const read={
-  //   width:"1.89rem" ,backgroundColor:"pink" ,display:"block",position:"absolute",
-  // }
+ 
   const anime={
   
     x:["-10rem","37rem"],
@@ -41,24 +40,16 @@ const Contact = ({contact}) => {
   const msgchanger=(e)=>{
     setMessage(e.target.value)
   }
-  // console.log(name.length)
+ 
  
   const formsubmit=(e)=>{
     e.preventDefault(); 
-    // console.log(e.target.name.value)
-    // const service_id ='service_trs14xe';
+ 
     const temp_id = 'template_u2ruo6q';
-    // const publickey = 'G_zmgusWpBvicEFMb';
-
-    // const service_id ='0000000000000';
-    // const temp_id = '00000000000000';
-     
+   
     const y = name==="";
     const x = email==="";
-    
-
-    // {y?('00000000000000'):('G_zmgusWpBvicEFMb')}
-      
+     
      const publickey= y?'00000000000000':'G_zmgusWpBvicEFMb';
      const service_id=x?'0000000000000':'service_trs14xe';
      
@@ -70,7 +61,7 @@ const Contact = ({contact}) => {
 
     emailjs.send(service_id,temp_id,templateParems,publickey)
     .then((response)=>{
-      // console.log('email sent successfull');
+      
   
        
        
@@ -79,40 +70,36 @@ const Contact = ({contact}) => {
       setMessage("");
     
       setFly(true)
-      alert("msg is sent successful");
-      // console.log(fly)
+      
+     
+      toast.success("message is sent successfull",{
+        position:"bottom-right"
+      })
      
 
     })
     .catch((error)=>{
       console.log(error);
       alert("input bosxes can't be empty")
-      // setFly(true)
-      // console.log(fly)
+  
     })
     console.log(e)
 
   }
-
-
-
+ 
   
   return (
     <div
      ref={contact}
     className='Firstpage container d-flex align-items-center justify-content-center gap-1'>
-
-
-
-
-
- <div className="wrap w-100 rounded-2 h-100 mt-5 position-relative" >
+ 
+ <div className="wrap w-100 rounded-2 h-100 mt-5 position-relative d-flex align-items-center justify-content-center" >
   <motion.img
       initial={{
         opacity:1
       }}  
       animate={fly?(dpoff):(" ") }
-  src={doimg} style={{width:"34.7rem",height:"31rem", position:"absolute",zIndex:"2",transform:"translateX(-18rem)",borderRadius:"2rem"}} alt="" />
+  src={doimg} style={{width:"34.7rem",height:"31rem", position:"absolute",zIndex:"2",transform:"translateY(-1.5rem)",borderRadius:"2rem"}} alt="" />
   
  <div className="annie d-flex align-items-center justify-content-center flex-column "  id='animate'>
         <motion.img
@@ -137,11 +124,7 @@ const Contact = ({contact}) => {
           zIndex:100,
           transform:"scale(1) rotateX( 0deg)rotateY(0deg)rotateZ(0deg) translateX(0px)translateY(0px)"}}   alt="" />  
 
-
-
-
-
-
+  
           <motion.div
           initial={{opacity:0}}
           animate={fly?(sentmsg):(" ") }
@@ -160,12 +143,9 @@ const Contact = ({contact}) => {
             <div className="msgmsg">Message is sent to email successfull</div>
           </motion.div>
         </div>
- </div>
-
-      
-
+ </div> 
         <div className="details w-100 h-100   d-flex align-items-center justify-content-center">
-        {/* <img  src={bg} style={{ width:"25rem",transform:"scaleX(1.25)"}}  alt="" srcset="" /> */}
+        
         <div className="formal d-flex align-items-center justify-content-center row-cols-1">
             <div className="glass">
             <div className="formheader fs-1 text-ligh opacity-100 ">Get in touch</div>
@@ -197,14 +177,8 @@ const Contact = ({contact}) => {
            
           </div>
         </div>
- 
-             
-             
-             
-             
-        
-    
-    
+  
+    <ToastContainer />
     </div> 
   )
   
