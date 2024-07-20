@@ -78,9 +78,11 @@ const Contact = ({contact}) => {
      
 
     })
-    .catch((error)=>{
-      console.log(error);
-      alert("input bosxes can't be empty")
+    .catch(()=>{
+      
+     toast.error("message is not  sent",{
+        position:"top-right"
+      })
   
     })
     console.log(e)
